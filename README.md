@@ -1,2 +1,2 @@
 # naivnoe_programmirovanie
-it was just started
+it has been just started
