@@ -1,0 +1,1 @@
+# naivnoe_programmirovanie
