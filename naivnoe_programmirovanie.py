@@ -16,10 +16,6 @@ def make_issues_list(url):
             issue_list.append(item['title'])
     return issue_list
 
-def count_pages(h_link):
-    page_numbers=int(h_link.split()[-2][h_link.split()[-2].rfind('=')+1:-2])    # take a number of the last page
-    return page_numbers
-
 print('List issues in a repository (only open issues will be listed):')
 
 total_list=[]
@@ -29,15 +25,13 @@ if response.status_code == 200 and not 'link' in response.headers:
     lst = make_issues_list(base_url)
     total_list.extend(lst)
 if response.status_code == 200 and 'link' in response.headers:
-    headers_links = response.headers['link']
-    #print(headers_links.split())
-    page_numbers=count_pages(headers_links)
-    #print('total pages:', page_numbers)
-    for num in range(1,page_numbers+1):
-        add_url=f'{base_url}?page={num}'
-        temp_list=make_issues_list(add_url)
+    counter=1
+    temp_list=['ololo pysch pysch']
+    while len(temp_list)!=0:
+        add_url = f'{base_url}?page={counter}'
+        temp_list = make_issues_list(add_url)
         total_list.extend(temp_list)
-
+        counter+=1
 
 
 for i in range(len(total_list)):
